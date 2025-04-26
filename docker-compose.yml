@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"   # il manquait le port externe : interne
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    command: ["serve", "-s", "build", "-l", "3000"]   # FORCER serve à écouter sur le port 3000
